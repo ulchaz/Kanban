@@ -1,10 +1,9 @@
 import './App.css';
 import Header from './components/Header/Header';
 import Column from './components/Column/Column';
-// Импортируем попапы (создадим позже)
-// import PopExit from './components/popups/PopExit/PopExit';
-// import PopNewCard from './components/popups/PopNewCard/PopNewCard';
-// import PopBrowse from './components/popups/PopBrowse/PopBrowse';
+import PopExit from './components/popups/PopExit/PopExit';
+import PopNewCard from './components/popups/PopNewCard/PopNewCard';
+import PopBrowse from './components/popups/PopBrowse/PopBrowse';
 
 function App() {
   // Данные для колонок
@@ -50,10 +49,10 @@ function App() {
   return (
     <>
       <div className="wrapper">
-        {/* Попапы пока закомментируем, создадим позже */}
-        {/* <PopExit /> */}
-        {/* <PopNewCard /> */}
-        {/* <PopBrowse /> */}
+        {/* Попапы */}
+        <PopExit />
+        <PopNewCard />
+        <PopBrowse />
 
         <Header />
         
