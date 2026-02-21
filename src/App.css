@@ -1086,3 +1086,15 @@ body {
     display: block;
   }
 }
+
+.loading {
+  text-align: center;
+  font-size: 18px;
+  color: #94A6BE;
+  padding: 50px;
+  width: 100%;
+}
+
+.pop-new-card._active {
+  display: block; /* Показываем при добавлении класса */
+}
