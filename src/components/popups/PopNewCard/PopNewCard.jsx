@@ -99,7 +99,6 @@ function PopNewCard({ onClose, onAddCard, isOpen }) {
                     </div>
                   </div>
                   
-                  {/* Здесь можно добавить выбор даты */}
                   <div className="calendar__period">
                     <p className="calendar__p date-end">
                       Введите срок исполнения: 

@@ -28,7 +28,6 @@ function Header({ onOpenNewCard }) { // onOpenNewCard приходит из App
   id="btnMainNew" 
   onClick={(e) => {
     e.preventDefault();
-    console.log('Кнопка нажата!'); // Добавь эту строку
     onOpenNewCard(); 
   }}
 >

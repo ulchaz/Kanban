@@ -2,7 +2,7 @@
 function Card({ title, topic, date }) {
   const getThemeClass = () => {
     switch(topic) {
-      case 'Web Design': return 'orange'; // Исправь опечатку
+      case 'Web Design': return 'orange'; 
       case 'Research': return 'green';
       case 'Copywriting': return 'purple';
       default: return 'orange';

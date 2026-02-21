@@ -13,12 +13,10 @@ function App() {
   const [isNewCardOpen, setIsNewCardOpen] = useState(false);
 
   const openNewCard = () => {
-    console.log('openNewCard вызвана!'); // Добавь эту строку
     setIsNewCardOpen(true);
   };
   
   const closeNewCard = () => {
-    console.log('closeNewCard вызвана!'); // Добавь эту строку
     setIsNewCardOpen(false);
   };
   useEffect(() => {
@@ -30,7 +28,6 @@ function App() {
   }, []);
 
   const handleAddCard = (newCardData) => {
-    // Эта функция теперь будет получать данные из формы
     const newCard = {
       id: Date.now(),
       topic: newCardData?.topic || "Web Design",
@@ -39,12 +36,11 @@ function App() {
       status: "Без статуса"
     };
     setCards([...cards, newCard]);
-    closeNewCard(); // Закрываем окно после добавления
+    closeNewCard();
   };
 
   return (
     <div className="wrapper">
-      {/* Передаём onOpenNewCard в Header */}
       <Header onOpenNewCard={openNewCard} />
       
       <main className="main">
@@ -69,7 +65,6 @@ function App() {
         </div>
       </main>
       
-      {/* Попапы - теперь окно открывается условно */}
       <PopExit />
       {isNewCardOpen && (
         <PopNewCard 

@@ -1096,5 +1096,5 @@ body {
 }
 
 .pop-new-card._active {
-  display: block; /* Показываем при добавлении класса */
+  display: block; 
 }
