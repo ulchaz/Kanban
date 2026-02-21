@@ -1,19 +1,19 @@
 // src/components/Column/Column.jsx
 import Card from '../Card/Card';
 
-function Column({ title, cards }) {
+function Column({ title, cardList }) {
   return (
     <div className="main__column column">
       <div className="column__title">
         <p>{title}</p>
       </div>
       <div className="cards">
-        {cards.map((card, index) => (
-          <div className="cards__item" key={index}>
+        {cardList.map(card => (
+          <div className="cards__item" key={card.id}>
             <Card 
-              theme={card.theme} 
-              themeClass={card.themeClass} 
-              title={card.title} 
+              topic={card.topic} 
+              title={card.title}
+              date={card.date} 
             />
           </div>
         ))}
