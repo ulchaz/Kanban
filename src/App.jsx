@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import Column from './components/Column/Column';
+import Main from './components/Main/Main'; // Импортируем новый компонент
 import {cardList as initialCards, statusList} from "./data";
 import PopExit from './components/popups/PopExit/PopExit';
 import PopNewCard from './components/popups/PopNewCard/PopNewCard';
@@ -43,27 +43,11 @@ function App() {
     <div className="wrapper">
       <Header onOpenNewCard={openNewCard} />
       
-      <main className="main">
-        <div className="container">
-          <div className="main__block">
-            <div className="main__content">
-              {isLoading ? (
-                <div className="loading">Данные загружаются...</div>
-              ) : (
-                statusList.map((status) => (
-                  <Column
-                    key={status}
-                    title={status}
-                    cardList={cards.filter(
-                      (card) => card.status === status
-                    )}
-                  />
-                ))
-              )}
-            </div>
-          </div>
-        </div>
-      </main>
+      <Main 
+        isLoading={isLoading}
+        cards={cards}
+        statusList={statusList}
+      />
       
       <PopExit />
       {isNewCardOpen && (
