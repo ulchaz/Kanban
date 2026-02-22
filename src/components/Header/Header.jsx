@@ -1,7 +1,15 @@
 // src/components/Header/Header.jsx
 import React, { useState } from "react";
+import {
+  StyledHeader,
+  StyledHeaderBlock,
+  StyledHeaderLogo,
+  StyledHeaderNav,
+  StyledHeaderButton,
+  StyledHeaderUser
+} from './Header.styled';
 
-function Header({ onOpenNewCard }) { // onOpenNewCard приходит из App
+function Header({ onOpenNewCard }) {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   const toggleUserMenu = () => {
@@ -9,32 +17,32 @@ function Header({ onOpenNewCard }) { // onOpenNewCard приходит из App
   };
 
   return (
-    <header className="header">
+    <StyledHeader className="header">
       <div className="container">
-        <div className="header__block">
-          <div className="header__logo _show _light">
+        <StyledHeaderBlock className="header__block">
+          <StyledHeaderLogo className="header__logo _show _light">
             <a href="#" target="_self">
               <img src="/logo.png" alt="logo" />
             </a>
-          </div>
-          <div className="header__logo _dark">
+          </StyledHeaderLogo>
+          <StyledHeaderLogo className="header__logo _dark">
             <a href="#" target="_self">
               <img src="/logo_dark.png" alt="logo" />
             </a>
-          </div>
-          <nav className="header__nav">
-          <button 
-  className="header__btn-main-new _hover01" 
-  id="btnMainNew" 
-  onClick={(e) => {
-    e.preventDefault();
-    onOpenNewCard(); 
-  }}
->
-  Создать новую задачу
-</button>
+          </StyledHeaderLogo>
+          <StyledHeaderNav className="header__nav">
+            <StyledHeaderButton 
+              className="header__btn-main-new _hover01" 
+              id="btnMainNew" 
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenNewCard(); 
+              }}
+            >
+              Создать новую задачу
+            </StyledHeaderButton>
 
-            <a 
+            <StyledHeaderUser 
               href="#user-set-target" 
               className="header__user _hover02" 
               onClick={(e) => {
@@ -43,7 +51,7 @@ function Header({ onOpenNewCard }) { // onOpenNewCard приходит из App
               }}
             >
               Ivan Ivanov
-            </a>
+            </StyledHeaderUser>
             
             <div 
               className="header__pop-user-set pop-user-set" 
@@ -60,10 +68,10 @@ function Header({ onOpenNewCard }) { // onOpenNewCard приходит из App
                 <a href="#popExit">Выйти</a>
               </button>
             </div>
-          </nav>
-        </div>
+          </StyledHeaderNav>
+        </StyledHeaderBlock>
       </div>
-    </header>
+    </StyledHeader>
   );
 }
 
