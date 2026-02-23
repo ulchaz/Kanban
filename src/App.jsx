@@ -1,64 +1,57 @@
-import React, { useState, useEffect} from 'react';
-import './App.css';
-import Header from './components/Header/Header';
-import Main from './components/Main/Main'; // Импортируем новый компонент
-import {cardList as initialCards, statusList} from "./data";
-import PopExit from './components/popups/PopExit/PopExit';
-import PopNewCard from './components/popups/PopNewCard/PopNewCard';
-import PopBrowse from './components/popups/PopBrowse/PopBrowse';
+// src/App.jsx
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ROUTES } from './routes';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import MainPage from './pages/MainPage/MainPage';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import CardPage from './pages/CardPage/CardPage';
+import ExitPage from './pages/ExitPage/ExitPage';
+import NotFound from './pages/NotFound/NotFound';
+import { GlobalStyles } from './styles/GlobalStyles';
 
 function App() {
-  const [cards, setCards] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isNewCardOpen, setIsNewCardOpen] = useState(false);
-
-  const openNewCard = () => {
-    setIsNewCardOpen(true);
-  };
-  
-  const closeNewCard = () => {
-    setIsNewCardOpen(false);
-  };
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCards(initialCards);
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleAddCard = (newCardData) => {
-    const newCard = {
-      id: Date.now(),
-      topic: newCardData?.topic || "Web Design",
-      title: newCardData?.title || "Новая задача",
-      date: newCardData?.date || new Date().toLocaleDateString('ru-RU').replace(/\//g, '.'),
-      status: "Без статуса"
-    };
-    setCards([...cards, newCard]);
-    closeNewCard();
-  };
+  const [isAuth, setIsAuth] = useState(true);
 
   return (
-    <div className="wrapper">
-      <Header onOpenNewCard={openNewCard} />
-      
-      <Main 
-        isLoading={isLoading}
-        cards={cards}
-        statusList={statusList}
-      />
-      
-      <PopExit />
-      {isNewCardOpen && (
-        <PopNewCard 
-          onClose={closeNewCard}
-          onAddCard={handleAddCard}
-          isOpen={isNewCardOpen} 
+    <BrowserRouter>
+      <GlobalStyles />
+      <Routes>
+        {/* Публичные маршруты */}
+        <Route path={ROUTES.LOGIN} element={<Login setIsAuth={setIsAuth} />} />
+        <Route path={ROUTES.REGISTER} element={<Register setIsAuth={setIsAuth} />} />
+        
+        {/* Защищенные маршруты */}
+        <Route
+          path={ROUTES.MAIN}
+          element={
+            <ProtectedRoute isAuth={isAuth}>
+              <MainPage />
+            </ProtectedRoute>
+          }
         />
-      )}
-      <PopBrowse />
-    </div>
+        <Route
+          path={ROUTES.CARD}
+          element={
+            <ProtectedRoute isAuth={isAuth}>
+              <CardPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path={ROUTES.EXIT}
+          element={
+            <ProtectedRoute isAuth={isAuth}>
+              <ExitPage setIsAuth={setIsAuth} />
+            </ProtectedRoute>
+          }
+        />
+        
+        {/* 404 */}
+        <Route path={ROUTES.NOT_FOUND} element={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
