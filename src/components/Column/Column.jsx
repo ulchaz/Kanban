@@ -7,7 +7,7 @@ import {
   StyledCardItem
 } from './Column.styled';
 
-function Column({ title, cardList }) {
+function Column({ title, cardList, onCardClick }) {  // Добавляем onCardClick
   return (
     <StyledColumn className="main__column column">
       <StyledColumnTitle className="column__title">
@@ -15,7 +15,11 @@ function Column({ title, cardList }) {
       </StyledColumnTitle>
       <StyledCardsContainer className="cards">
         {cardList.map(card => (
-          <StyledCardItem className="cards__item" key={card.id}>
+          <StyledCardItem 
+            className="cards__item" 
+            key={card.id}
+            onClick={() => onCardClick(card)}  // Добавляем клик по карточке
+          >
             <Card 
               topic={card.topic} 
               title={card.title}

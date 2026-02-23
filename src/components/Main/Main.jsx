@@ -3,11 +3,11 @@ import React from 'react';
 import Column from '../Column/Column';
 import { MainContainer, MainBlock, MainContent, LoadingText } from './Main.styled';
 
-function Main({ isLoading, cards, statusList }) {
+function Main({ isLoading, cards, statusList, onCardClick }) {
   if (isLoading) {
     return (
       <MainContainer>
-        <div className="container">  {/* Добавляем класс container */}
+        <div className="container">
           <MainBlock>
             <MainContent>
               <LoadingText>Данные загружаются...</LoadingText>
@@ -20,16 +20,15 @@ function Main({ isLoading, cards, statusList }) {
 
   return (
     <MainContainer>
-      <div className="container">  {/* Добавляем класс container */}
+      <div className="container">
         <MainBlock>
           <MainContent>
             {statusList.map((status) => (
               <Column
                 key={status}
                 title={status}
-                cardList={cards.filter(
-                  (card) => card.status === status
-                )}
+                cardList={cards.filter((card) => card.status === status)}
+                onCardClick={onCardClick}
               />
             ))}
           </MainContent>
